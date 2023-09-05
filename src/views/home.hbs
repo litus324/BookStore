@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {{>css}}
+
+    <style>
+
+        body{
+            overflow-x: hidden;
+        }
+
+        .vertical {
+            border-left: 2px solid black;
+            height: 20px;
+            padding-right: 50px;
+        }
+        .custom-img{
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+    <title>Quản lý nhà sách</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        {{>(nav)}}
+        <!-- Page Content  -->
+        <div id="content">
+            <div class="row pe-5">
+                <div class="d-flex flex-row justify-content-end align-items-center">
+                    <div class="vertical"></div>
+                    <div class="me-2"><strong>{{User}}</strong></div>
+                    <img src="/unknow.png" alt="Unknow person" class="custom-img">
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="col">
+                    <div class="card-deck text-center d-flex flex-row justify-content-around mb-3">
+                        <div class="card">
+                            <div class="card-body px-5">
+                                <h6 class="card-text ">Tổng tiền hóa đơn đã lập</h6>
+                                <p class="card-text">
+                                <h2>{{format_number revenue}}</h2>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card active border-primary">
+                            <div class="card-body  px-5 text-primary">
+                                <h6 class="card-title ">Tổng tiền thu được thực tế</h6>
+                                <p class="card-text">
+                                <h2>{{format_number realRevenue}}</h2>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body  px-5">
+                                <h6 class="card-title ">Số lượng khách</h6>
+                                <p class="card-text">
+                                <h2>{{format_number customer}}</h2>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-9">
+                    {{#if isEmpty}}
+                        <div class="alert alert-danger h4" role="alert">
+                        Không có dữ liệu
+                        </div>
+                        <canvas id="myChart"></canvas>
+                    {{else}}
+                        <canvas id="myChart" data-label="{{label}}" data-data="{{data}}" ></canvas>
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>
